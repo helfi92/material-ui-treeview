@@ -20,7 +20,7 @@ After importing the component, it can be rendered with the required `tree` prop:
 
 #### Import
 
-```
+```js
 import MuiTreeView from 'material-ui-treeview';
 
 // using require
