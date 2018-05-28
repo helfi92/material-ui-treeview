@@ -2,6 +2,8 @@
 
 A React tree view for material-ui.
 
+See the demo on the styleguide at https://hassanali.me/material-ui-treeview.
+
 ## Getting started
 
 ```
