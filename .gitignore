@@ -42,3 +42,9 @@ node_modules
 # Gitbook docs
 _book
 /.vscode
+
+# build directory
+lib
+build
+styleguide
+es5
