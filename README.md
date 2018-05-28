@@ -8,15 +8,26 @@ See the demo on the styleguide at https://hassanali.me/material-ui-treeview.
 
 ```
 # If using Yarn:
-yarn add material-ui-treeview
+yarn add material-ui-treeview @material-ui/core
 
 # If using npm:
-npm install --save material-ui-treeview
+npm install --save material-ui-treeview @material-ui/core
 ```
 
 ### Usage
 
 After importing the component, it can be rendered with the required `tree` prop:
+
+#### Import
+
+```
+import MuiTreeView from 'material-ui-treeview';
+
+// using require
+const MuiTreeView = require('material-ui-treeview').default;
+```
+
+#### Example
 
 ```jsx
 import React from 'react';
@@ -55,10 +66,10 @@ render((
 These are located material-ui-treeview/es5, e.g.:
 
 ```js
-import MuiTreeView from 'material-ui-treeview/es5';
+import MuiTreeView from 'material-ui-treeview/es5/MuiTreeView';
 
 // using require
-const MuiTreeView = require('material-ui-treeview/es5');
+const MuiTreeView = require('material-ui-treeview/es5/MuiTreeView');
 ```
 
 ### Props
