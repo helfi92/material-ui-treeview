@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "build/MuiTreeView.js",
   "description": "A React tree view for material-ui v1.",
+  "repository": "helfi92/material-ui-treeview",
   "keywords": [
     "react",
     "material-ui",
@@ -20,7 +21,7 @@
   "scripts": {
     "build": "neutrino build",
     "start": "neutrino styleguide:start",
-    "prepare": "neutrino build",
+    "prepare": "neutrino lint && neutrino test && neutrino build",
     "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
     "lint": "neutrino lint",
     "test": "neutrino test"
