@@ -1,0 +1,55 @@
+{
+  "name": "material-ui-treeview",
+  "version": "1.0.0",
+  "main": "build/MuiTreeView.js",
+  "description": "A React tree view for material-ui v1.",
+  "keywords": [
+    "react",
+    "material-ui",
+    "tree",
+    "view",
+    "treeview",
+    "tree-view",
+    "treenode",
+    "react-component",
+    "ui",
+    "material design"
+  ],
+  "license": "MIT",
+  "author": "Hassan Ali <helfi92@gmail.com>",
+  "scripts": {
+    "build": "neutrino build",
+    "start": "neutrino styleguide:start",
+    "prepare": "neutrino build",
+    "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
+    "lint": "neutrino lint",
+    "test": "neutrino test"
+  },
+  "files": [
+    "build",
+    "es5"
+  ],
+  "devDependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@neutrinojs/jest": "^8.2.3",
+    "babel-register": "^6.26.0",
+    "gh-pages": "^1.1.0",
+    "neutrino": "^8.2.3",
+    "neutrino-middleware-styleguidist": "^1.0.2",
+    "neutrino-preset-mozilla-frontend-infra": "^4.1.0",
+    "prop-types": "^15.6.1",
+    "raf": "^3.4.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-fout-stager": "^3.0.0",
+    "react-test-renderer": "^16.4.0",
+    "typeface-roboto": "^0.0.54"
+  },
+  "dependencies": {
+    "ramda": "^0.25.0",
+    "@material-ui/icons": "^1.1.0"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^1.0.0"
+  }
+}
