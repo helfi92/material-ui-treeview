@@ -13,7 +13,9 @@ const tree = {
   value: string.isRequired,
 };
 
-tree.nodes = arrayOf(oneOfType([shape(tree), string]));
+Object.assign(tree, {
+  nodes: arrayOf(oneOfType([shape(tree), string])),
+});
 
 const styles = theme => ({
   panel: {
