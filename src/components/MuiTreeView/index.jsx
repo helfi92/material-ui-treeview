@@ -48,11 +48,7 @@ const styles = theme => ({
     whiteSpace: 'noWrap',
     maxWidth: '75vw',
   },
-  iconButton: {
-    '& svg': {
-      fill: 'white',
-    },
-  },
+  expandIcon: {},
 });
 
 /**
@@ -147,6 +143,7 @@ class MuiTreeView extends Component {
         {...props}>
         <ExpansionPanelSummary
           className={classes.panelSummary}
+          classes={{ expandIcon: classes.expandIcon }}
           expandIcon={<KeyboardArrowDown />}
           {...expansionPanelSummaryProps}>
           <div className={classes.text}>{node.value}</div>
