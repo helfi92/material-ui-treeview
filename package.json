@@ -19,6 +19,7 @@
   "license": "MIT",
   "author": "Hassan Ali <helfi92@gmail.com>",
   "scripts": {
+    "changelog": "auto-changelog",
     "build": "neutrino build",
     "start": "neutrino styleguide:start",
     "prepare": "neutrino lint && neutrino test && neutrino build",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@material-ui/core": "^1.1.0",
     "@neutrinojs/jest": "^8.2.3",
+    "auto-changelog": "^1.7.1",
     "babel-register": "^6.26.0",
     "gh-pages": "^1.1.0",
     "neutrino": "^8.2.3",
@@ -47,8 +49,8 @@
     "typeface-roboto": "^0.0.54"
   },
   "dependencies": {
-    "ramda": "^0.25.0",
-    "@material-ui/icons": "^1.1.0"
+    "@material-ui/icons": "^1.1.0",
+    "ramda": "^0.25.0"
   },
   "peerDependencies": {
     "@material-ui/core": "^1.0.0"

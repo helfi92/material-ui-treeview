@@ -122,6 +122,7 @@ class MuiTreeView extends Component {
           value={value}
           onClick={() => this.handleLeafClick(value, parent)}
           button
+          className={classes.itemListActive}
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
         </ListItem>
