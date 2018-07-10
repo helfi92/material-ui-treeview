@@ -22,7 +22,7 @@
     "changelog": "auto-changelog",
     "build": "neutrino build",
     "start": "neutrino styleguide:start",
-    "prepare": "neutrino lint && neutrino test && neutrino build",
+    "prepare": "neutrino test && neutrino build",
     "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
     "lint": "neutrino lint",
     "test": "neutrino test"
@@ -46,7 +46,8 @@
     "react-dom": "^16.4.0",
     "react-fout-stager": "^3.0.0",
     "react-test-renderer": "^16.4.0",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "verdaccio": "^3.2.0"
   },
   "dependencies": {
     "@material-ui/icons": "^1.1.0",
