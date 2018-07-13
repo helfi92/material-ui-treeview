@@ -19,7 +19,7 @@
   "license": "MIT",
   "author": "Hassan Ali <helfi92@gmail.com>",
   "scripts": {
-    "changelog": "auto-changelog",
+    "changelog": "auto-changelog -p",
     "build": "neutrino build",
     "start": "neutrino styleguide:start",
     "prepare": "neutrino test && neutrino build",
