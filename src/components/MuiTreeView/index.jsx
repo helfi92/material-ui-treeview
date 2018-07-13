@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { arrayOf, shape, string, func, oneOfType, object } from 'prop-types';
-import { memoizeWith } from 'ramda';
+import classNames from 'classnames';
+import { memoizeWith, prop } from 'ramda';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -8,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 
+const pickClassName = prop('className');
 /** Prop-type for a recursive data structure */
 const tree = {
   value: string.isRequired,
@@ -122,7 +124,6 @@ class MuiTreeView extends Component {
           value={value}
           onClick={() => this.handleLeafClick(value, parent)}
           button
-          className={classes.itemListActive}
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
         </ListItem>
@@ -136,22 +137,26 @@ class MuiTreeView extends Component {
 
     return (
       <ExpansionPanel
-        className={classes.panel}
         classes={expansionPanelClasses}
         style={{ textIndent }}
         key={node.value}
         elevation={0}
-        {...props}>
+        {...props}
+        className={classNames(classes.panel, pickClassName(props))}>
         <ExpansionPanelSummary
-          className={classes.panelSummary}
-          classes={{ expandIcon: classes.expandIcon }}
-          expandIcon={<KeyboardArrowDown />}
-          {...expansionPanelSummaryProps}>
+          classes={{
+            expandIcon: classes.expandIcon,
+            root: classes.panelSummary,
+          }}
+          {...expansionPanelSummaryProps}
+          className={classNames(pickClassName(expansionPanelSummaryProps))}
+          expandIcon={<KeyboardArrowDown />}>
           <div className={classes.text}>{node.value}</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
-          className={classes.panelDetails}
-          {...expansionPanelDetailsProps}>
+          {...expansionPanelDetailsProps}
+          classes={{ root: classes.panelDetails }}
+          className={classNames(pickClassName(expansionPanelDetailsProps))}>
           {node.nodes.map(l => this.renderNode(l, node, depth + 1))}
         </ExpansionPanelDetails>
       </ExpansionPanel>
