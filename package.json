@@ -37,6 +37,7 @@
     "@neutrinojs/jest": "^8.2.3",
     "auto-changelog": "^1.7.1",
     "babel-register": "^6.26.0",
+    "fs-extra": "^7.0.0",
     "gh-pages": "^1.1.0",
     "neutrino": "^8.2.3",
     "neutrino-middleware-styleguidist": "^1.0.2",
