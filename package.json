@@ -2,7 +2,7 @@
   "name": "material-ui-treeview",
   "version": "1.1.1",
   "main": "build/MuiTreeView.js",
-  "types": "./index.d.ts",
+  "types": "build/index.d.ts",
   "description": "A React tree view for material-ui v1.",
   "repository": "helfi92/material-ui-treeview",
   "keywords": [
