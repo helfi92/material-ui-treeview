@@ -1,3 +1,4 @@
+const fs = require('fs-extra');
 const { join } = require('path');
 
 require('babel-register')({
@@ -39,6 +40,10 @@ module.exports = {
       if (neutrino.options.command === 'styleguide:start') {
         neutrino.config.module.rules.delete('lint');
       }
+
+      neutrino.on('build', () => {
+        fs.copyFileSync(`${neutrino.options.source}/index.d.ts`, join(__dirname, 'build/index.d.ts'));
+      });
     },
     '@neutrinojs/jest',
   ],
