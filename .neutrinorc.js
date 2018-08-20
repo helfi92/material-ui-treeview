@@ -43,6 +43,7 @@ module.exports = {
 
       neutrino.on('build', () => {
         fs.copyFileSync(`${neutrino.options.source}/index.d.ts`, join(__dirname, 'build/index.d.ts'));
+        fs.copyFileSync(`${neutrino.options.source}/index.d.ts`, join(__dirname, 'es5/MuiTreeView.d.ts'));
       });
     },
     '@neutrinojs/jest',
