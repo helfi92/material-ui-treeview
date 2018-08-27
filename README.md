@@ -62,15 +62,6 @@ render((
 ), document.getElementById('root'));
 ```
 
-**Important**: If you are using Create React App, you will need to import the ES5 version of the component.
-
-```js
-import MuiTreeView from 'material-ui-treeview/es5/MuiTreeView';
-
-// using require
-const MuiTreeView = require('material-ui-treeview/es5/MuiTreeView');
-```
-
 ### Props
 
 
