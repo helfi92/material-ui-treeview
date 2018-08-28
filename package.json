@@ -1,8 +1,8 @@
 {
   "name": "material-ui-treeview",
-  "version": "1.2.0",
-  "main": "build/MuiTreeView.js",
-  "types": "build/index.d.ts",
+  "version": "2.2.0",
+  "main": "MuiTreeView.js",
+  "types": "index.d.ts",
   "description": "A React tree view for material-ui v1.",
   "repository": "helfi92/material-ui-treeview",
   "keywords": [
@@ -23,23 +23,19 @@
     "changelog": "auto-changelog -p",
     "build": "neutrino build",
     "start": "neutrino styleguide:start",
-    "prepare": "neutrino test && neutrino build",
     "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
     "lint": "neutrino lint",
-    "test": "neutrino test"
+    "test": "neutrino test",
+    "publish": "yarn build && npm publish build"
   },
-  "files": [
-    "build",
-    "es5"
-  ],
   "devDependencies": {
     "@material-ui/core": "^1.1.0",
-    "@neutrinojs/jest": "^8.2.3",
+    "@neutrinojs/jest": "^8.3.0",
     "auto-changelog": "^1.7.1",
     "babel-register": "^6.26.0",
     "fs-extra": "^7.0.0",
     "gh-pages": "^1.1.0",
-    "neutrino": "^8.2.3",
+    "neutrino": "^8.3.0",
     "neutrino-middleware-styleguidist": "^1.0.2",
     "neutrino-preset-mozilla-frontend-infra": "^4.1.0",
     "prop-types": "^15.6.1",
