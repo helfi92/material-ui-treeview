@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { arrayOf, shape, string, func, oneOfType, object } from 'prop-types';
 import classNames from 'classnames';
-import { memoizeWith, prop } from 'ramda';
+import { prop } from 'ramda';
+import memoize from 'fast-memoize';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -80,9 +81,12 @@ class MuiTreeView extends Component {
     listItemProps: null,
   };
 
-  createFilteredTree = memoizeWith(
-    (tree, searchTerm) => `${tree.toString()}-${searchTerm}`,
-    (tree, searchTerm) => (searchTerm ? this.filter(tree) : tree)
+  createFilteredTree = memoize(
+    (tree, searchTerm) => (searchTerm ? this.filter(tree) : tree),
+    {
+      serializer: ([tree, searchTerm]) =>
+        `${JSON.stringify(tree)}-${searchTerm}`,
+    }
   );
 
   handleLeafClick = (value, parent) => {
