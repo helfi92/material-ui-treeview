@@ -26,7 +26,7 @@
     "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
     "lint": "neutrino lint",
     "test": "neutrino test",
-    "publish": "yarn build && npm publish build"
+    "publish:npm": "yarn build && npm publish build"
   },
   "devDependencies": {
     "@material-ui/core": "^1.1.0",
@@ -45,11 +45,12 @@
     "react-fout-stager": "^3.0.0",
     "react-test-renderer": "^16.4.0",
     "typeface-roboto": "^0.0.54",
-    "verdaccio": "^3.2.0"
+    "verdaccio": "^3.8.1"
   },
   "dependencies": {
     "@material-ui/icons": "^1.1.0",
     "classnames": "^2.2.6",
+    "fast-memoize": "^2.5.1",
     "ramda": "^0.25.0"
   },
   "peerDependencies": {
