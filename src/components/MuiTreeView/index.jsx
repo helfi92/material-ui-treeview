@@ -52,6 +52,9 @@ const styles = theme => ({
     maxWidth: '75vw',
   },
   expandIcon: {},
+  highlightItem: {
+    backgroundColor: 'rgb(220, 227, 239)',
+  },
 });
 
 /**
@@ -71,6 +74,8 @@ class MuiTreeView extends Component {
     expansionPanelDetailsProps: object,
     /** Properties applied to the ListItem element. */
     listItemProps: object,
+    /** Value path for some leaf to highlight */
+    highlightItem: arrayOf(string),
   };
 
   static defaultProps = {
@@ -79,6 +84,7 @@ class MuiTreeView extends Component {
     expansionPanelSummaryProps: null,
     expansionPanelDetailsProps: null,
     listItemProps: null,
+    highlightItem: null,
   };
 
   createFilteredTree = memoize(
@@ -106,6 +112,7 @@ class MuiTreeView extends Component {
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
+      highlightItem,
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
@@ -120,6 +127,14 @@ class MuiTreeView extends Component {
     }
 
     if (isLeaf) {
+      let isHighlighted = false;
+
+      if (highlightItem) {
+        if (JSON.stringify(currentPath) === JSON.stringify(highlightItem)) {
+          isHighlighted = true;
+        }
+      }
+
       return (
         <ListItem
           disableGutters
@@ -129,6 +144,7 @@ class MuiTreeView extends Component {
           value={value}
           onClick={() => this.handleLeafClick(value, parent, currentPath)}
           button
+          classes={isHighlighted ? { root: classes.highlightItem } : {}}
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
         </ListItem>
