@@ -89,13 +89,13 @@ class MuiTreeView extends Component {
     }
   );
 
-  handleLeafClick = (value, parent) => {
+  handleLeafClick = (value, parent, path) => {
     if (this.props.onLeafClick) {
-      this.props.onLeafClick(value, parent);
+      this.props.onLeafClick(value, parent, path);
     }
   };
 
-  renderNode = (node, parent, depth = 0) => {
+  renderNode = (node, parent, depth = 0, fullPath = []) => {
     const {
       theme: {
         spacing: { unit },
@@ -109,6 +109,7 @@ class MuiTreeView extends Component {
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
+    const currentPath = [...fullPath, value];
     const isLeaf = this.isLeaf(node);
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
@@ -126,7 +127,7 @@ class MuiTreeView extends Component {
           key={value}
           id={value}
           value={value}
-          onClick={() => this.handleLeafClick(value, parent)}
+          onClick={() => this.handleLeafClick(value, parent, currentPath)}
           button
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
@@ -161,7 +162,7 @@ class MuiTreeView extends Component {
           {...expansionPanelDetailsProps}
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
-          {node.nodes.map(l => this.renderNode(l, node, depth + 1))}
+          {node.nodes.map(l => this.renderNode(l, node, depth + 1, currentPath))}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );
