@@ -173,7 +173,9 @@ class MuiTreeView extends Component {
           {...expansionPanelDetailsProps}
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
-          {node.nodes.map(l => this.renderNode(l, node, depth + 1, currentPath))}
+          {node.nodes.map(l =>
+            this.renderNode(l, node, depth + 1, currentPath)
+          )}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );
