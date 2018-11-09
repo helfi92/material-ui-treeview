@@ -1,5 +1,4 @@
 import { Component } from 'react';
-<<<<<<< 1d6ac39c2109b8271f6e20f4ad9e6d87ade3a5ef
 import {
   arrayOf,
   shape,
@@ -9,9 +8,6 @@ import {
   oneOfType,
   object,
 } from 'prop-types';
-=======
-import { arrayOf, shape, number, string, func, oneOfType, object } from 'prop-types';
->>>>>>> add node jd
 import classNames from 'classnames';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
@@ -27,12 +23,8 @@ const pickClassName = prop('className');
 const tree = {
   // The node value.
   value: string.isRequired,
-<<<<<<< 1d6ac39c2109b8271f6e20f4ad9e6d87ade3a5ef
   // Optional node ID. Useful for when the node value is not unique.
   id: oneOfType([string, number]),
-=======
-  id: oneOfType[string, number],
->>>>>>> add node jd
 };
 
 Object.assign(tree, {
@@ -72,7 +64,7 @@ const styles = theme => ({
   },
   expandIcon: {},
   highlightItem: {
-    backgroundColor: 'rgb(220, 227, 239)',
+    backgroundColor: 'rgb(138, 138, 138)',
   },
 });
 
@@ -94,7 +86,7 @@ class MuiTreeView extends Component {
     /** Properties applied to the ListItem element. */
     listItemProps: object,
     /** Id of a leaf which will be highlighted by adding the class  */
-    highlightId: oneOfType[string, number],
+    highlightId: oneOfType[(string, number)],
   };
 
   static defaultProps = {
@@ -114,11 +106,7 @@ class MuiTreeView extends Component {
     }
   );
 
-<<<<<<< 1d6ac39c2109b8271f6e20f4ad9e6d87ade3a5ef
   handleLeafClick = leaf => {
-=======
-  handleLeafClick = (leaf) => {
->>>>>>> add node jd
     if (this.props.onLeafClick) {
       this.props.onLeafClick(leaf);
     }
@@ -193,9 +181,7 @@ class MuiTreeView extends Component {
           {...expansionPanelDetailsProps}
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
-          {node.nodes.map(l =>
-            this.renderNode(l, node, depth + 1)
-          )}
+          {node.nodes.map(l => this.renderNode(l, node, depth + 1))}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );

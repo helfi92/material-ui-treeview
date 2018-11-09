@@ -13,7 +13,11 @@ const tree = [
       {
         value: 'Parent C',
         nodes: [
+<<<<<<< 38b10b1adb4f781cd5e42ff44669bec17f97d819
           { value: 'Child D', id: 'example-id' },
+=======
+          { value: 'Child D', id: 'test' },
+>>>>>>> highlight
           { value: 'Child E' },
           { value: 'Child F' },
         ],
