@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { arrayOf, shape, string, func, oneOfType, object } from 'prop-types';
+import { arrayOf, shape, number, string, func, oneOfType, object } from 'prop-types';
 import classNames from 'classnames';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
@@ -14,6 +14,7 @@ const pickClassName = prop('className');
 /** Prop-type for a recursive data structure */
 const tree = {
   value: string.isRequired,
+  id: oneOfType[string, number],
 };
 
 Object.assign(tree, {
@@ -74,8 +75,8 @@ class MuiTreeView extends Component {
     expansionPanelDetailsProps: object,
     /** Properties applied to the ListItem element. */
     listItemProps: object,
-    /** Value path for some leaf to highlight */
-    highlightItem: arrayOf(string),
+    /** Id of a leaf which will be highlighted by adding the class  */
+    highlightId: oneOfType[string, number],
   };
 
   static defaultProps = {
@@ -84,7 +85,7 @@ class MuiTreeView extends Component {
     expansionPanelSummaryProps: null,
     expansionPanelDetailsProps: null,
     listItemProps: null,
-    highlightItem: null,
+    highlightId: null,
   };
 
   createFilteredTree = memoize(
@@ -95,13 +96,13 @@ class MuiTreeView extends Component {
     }
   );
 
-  handleLeafClick = (value, parent, path) => {
+  handleLeafClick = (leaf) => {
     if (this.props.onLeafClick) {
-      this.props.onLeafClick(value, parent, path);
+      this.props.onLeafClick(leaf);
     }
   };
 
-  renderNode = (node, parent, depth = 0, fullPath = []) => {
+  renderNode = (node, parent, depth = 0) => {
     const {
       theme: {
         spacing: { unit },
@@ -112,11 +113,11 @@ class MuiTreeView extends Component {
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
-      highlightItem,
+      highlightId,
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
-    const currentPath = [...fullPath, value];
+    const id = this.getNodeId(node);
     const isLeaf = this.isLeaf(node);
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
@@ -127,14 +128,6 @@ class MuiTreeView extends Component {
     }
 
     if (isLeaf) {
-      let isHighlighted = false;
-
-      if (highlightItem) {
-        if (JSON.stringify(currentPath) === JSON.stringify(highlightItem)) {
-          isHighlighted = true;
-        }
-      }
-
       return (
         <ListItem
           disableGutters
@@ -142,9 +135,9 @@ class MuiTreeView extends Component {
           key={value}
           id={value}
           value={value}
-          onClick={() => this.handleLeafClick(value, parent, currentPath)}
+          onClick={() => this.handleLeafClick({ value, parent, id })}
           button
-          classes={isHighlighted ? { root: classes.highlightItem } : {}}
+          classes={highlightId === id ? { root: classes.highlightItem } : {}}
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
         </ListItem>
@@ -179,7 +172,7 @@ class MuiTreeView extends Component {
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
           {node.nodes.map(l =>
-            this.renderNode(l, node, depth + 1, currentPath)
+            this.renderNode(l, node, depth + 1)
           )}
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -192,6 +185,12 @@ class MuiTreeView extends Component {
 
   getNodeValue(node) {
     return typeof node === 'string' ? node : node.value;
+  }
+
+  getNodeId(node) {
+    if (typeof node === 'object') {
+      return node.id;
+    }
   }
 
   filter(tree) {
