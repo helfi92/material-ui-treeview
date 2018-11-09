@@ -25,7 +25,6 @@ const tree = [
 <MuiTreeView
   defaultExpanded
   onLeafClick={(node) => alert(`${JSON.stringify(node)}`)}
-  highlightId="test"
   tree={tree}
 />
 ```
