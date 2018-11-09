@@ -1,5 +1,13 @@
 import { Component } from 'react';
-import { arrayOf, shape, number, string, func, oneOfType, object } from 'prop-types';
+import {
+  arrayOf,
+  shape,
+  number,
+  string,
+  func,
+  oneOfType,
+  object,
+} from 'prop-types';
 import classNames from 'classnames';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
@@ -14,7 +22,7 @@ const pickClassName = prop('className');
 /** Prop-type for a recursive data structure */
 const tree = {
   value: string.isRequired,
-  id: oneOfType[string, number],
+  id: oneOfType[(string, number)],
 };
 
 Object.assign(tree, {
@@ -54,7 +62,7 @@ const styles = theme => ({
   },
   expandIcon: {},
   highlightItem: {
-    backgroundColor: 'rgb(220, 227, 239)',
+    backgroundColor: 'rgb(138, 138, 138)',
   },
 });
 
@@ -76,7 +84,7 @@ class MuiTreeView extends Component {
     /** Properties applied to the ListItem element. */
     listItemProps: object,
     /** Id of a leaf which will be highlighted by adding the class  */
-    highlightId: oneOfType[string, number],
+    highlightId: oneOfType[(string, number)],
   };
 
   static defaultProps = {
@@ -96,7 +104,7 @@ class MuiTreeView extends Component {
     }
   );
 
-  handleLeafClick = (leaf) => {
+  handleLeafClick = leaf => {
     if (this.props.onLeafClick) {
       this.props.onLeafClick(leaf);
     }
@@ -171,9 +179,7 @@ class MuiTreeView extends Component {
           {...expansionPanelDetailsProps}
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
-          {node.nodes.map(l =>
-            this.renderNode(l, node, depth + 1)
-          )}
+          {node.nodes.map(l => this.renderNode(l, node, depth + 1))}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );

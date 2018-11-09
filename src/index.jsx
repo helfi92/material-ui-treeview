@@ -30,9 +30,9 @@ const tree = [
 
 class App extends Component {
   /* eslint-disable-next-line no-alert */
-  handleLeafClick = (node, parent, fullPath) =>
+  handleLeafClick = node =>
     /* eslint-disable-next-line no-alert */
-    alert(`${node} clicked, full path: ${JSON.stringify(fullPath)}`);
+    alert(`${JSON.stringify(node)} clicked`);
 
   render() {
     return (
