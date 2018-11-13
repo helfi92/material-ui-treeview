@@ -6,6 +6,7 @@ import { ListItemProps } from '@material-ui/core/ListItem';
 export interface Tree {
   value: string;
   nodes?: Array<string | Tree>;
+  id?: string | number;
 }
 
 export interface MuiTreeViewProps {
@@ -17,7 +18,9 @@ export interface MuiTreeViewProps {
   /**
    * Callback function fired when a tree leaf is clicked.
    */
-  onLeafClick?: (value: string, parent: Tree) => void;
+  onLeafClick?: (
+    leaf: { value: string; parent: Tree; id?: string | number },
+  ) => void;
 
   /**
    * A search term to refine the tree
