@@ -26,6 +26,7 @@ const tree = [
   defaultExpanded
   onLeafClick={node => alert(JSON.stringify(node))}
   highlightId="example-id"
+  // highlightClass="highlightedClass"
   tree={tree}
 />
 ```
