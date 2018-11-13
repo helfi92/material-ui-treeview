@@ -1,5 +1,13 @@
 import { Component } from 'react';
-import { arrayOf, shape, string, func, oneOfType, object } from 'prop-types';
+import {
+  arrayOf,
+  shape,
+  number,
+  string,
+  func,
+  oneOfType,
+  object,
+} from 'prop-types';
 import classNames from 'classnames';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
@@ -13,7 +21,10 @@ import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 const pickClassName = prop('className');
 /** Prop-type for a recursive data structure */
 const tree = {
+  // The node value.
   value: string.isRequired,
+  // Optional node ID. Useful for when the node value is not unique.
+  id: oneOfType([string, number]),
 };
 
 Object.assign(tree, {
@@ -89,9 +100,9 @@ class MuiTreeView extends Component {
     }
   );
 
-  handleLeafClick = (value, parent) => {
+  handleLeafClick = leaf => {
     if (this.props.onLeafClick) {
-      this.props.onLeafClick(value, parent);
+      this.props.onLeafClick(leaf);
     }
   };
 
@@ -109,6 +120,7 @@ class MuiTreeView extends Component {
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
+    const id = this.getNodeId(node);
     const isLeaf = this.isLeaf(node);
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
@@ -126,7 +138,7 @@ class MuiTreeView extends Component {
           key={value}
           id={value}
           value={value}
-          onClick={() => this.handleLeafClick(value, parent)}
+          onClick={() => this.handleLeafClick({ value, parent, id })}
           button
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
@@ -173,6 +185,12 @@ class MuiTreeView extends Component {
 
   getNodeValue(node) {
     return typeof node === 'string' ? node : node.value;
+  }
+
+  getNodeId(node) {
+    if (typeof node === 'object') {
+      return node.id;
+    }
   }
 
   filter(tree) {

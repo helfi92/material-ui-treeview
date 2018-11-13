@@ -13,7 +13,7 @@ const tree = [
       {
         value: 'Parent C',
         nodes: [
-          { value: 'Child D' },
+          { value: 'Child D', id: 'example-id' },
           { value: 'Child E' },
           { value: 'Child F' },
         ],
@@ -24,7 +24,7 @@ const tree = [
 
 <MuiTreeView
   defaultExpanded
-  onLeafClick={node => alert(`${node} clicked`)}
+  onLeafClick={node => alert(JSON.stringify(node))}
   tree={tree}
 />
 ```
