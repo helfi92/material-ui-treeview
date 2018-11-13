@@ -24,7 +24,7 @@ const tree = {
   // The node value.
   value: string.isRequired,
   // Optional node ID. Useful for when the node value is not unique.
-  id: oneOfType[(string, number)],
+  id: oneOfType([string, number]),
 };
 
 Object.assign(tree, {
