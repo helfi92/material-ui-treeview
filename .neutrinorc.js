@@ -32,6 +32,9 @@ module.exports = {
       skipComponentsWithoutExample: true,
     }],
     ['neutrino-preset-mozilla-frontend-infra/react-components', {
+      targets: {
+        browsers: 'ie 9',
+      },
       style: {
         extract: false,
       },
@@ -43,6 +46,9 @@ module.exports = {
 
       neutrino.on('build', () => {
         fs.copyFileSync(`${neutrino.options.source}/index.d.ts`, join(__dirname, 'build/index.d.ts'));
+        ['package.json', 'LICENSE', 'README.md'].map(file => {
+          fs.copyFileSync(file, join(__dirname, `build/${file}`));
+        })
       });
     },
     '@neutrinojs/jest',

@@ -46,5 +46,5 @@ _book
 # build directory
 lib
 build
-styleguide
+/styleguide
 es5
