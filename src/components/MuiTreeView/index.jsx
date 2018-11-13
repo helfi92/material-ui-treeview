@@ -135,7 +135,7 @@ class MuiTreeView extends Component {
         <ListItem
           disableGutters
           style={{ textIndent }}
-          key={typeof id !== "undefined" ? id : value}
+          key={typeof id !== 'undefined' ? id : value}
           id={value}
           value={value}
           onClick={() => this.handleLeafClick({ value, parent, id })}
@@ -155,7 +155,7 @@ class MuiTreeView extends Component {
       <ExpansionPanel
         classes={expansionPanelClasses}
         style={{ textIndent }}
-        key={typeof node.id !== "undefined" ? node.id : node.value}
+        key={typeof node.id !== 'undefined' ? node.id : node.value}
         elevation={0}
         {...props}
         className={classNames(classes.panel, pickClassName(props))}>
