@@ -72,13 +72,15 @@ render((
 | searchTerm | string | no | A search term to refine the tree. |
 | expansionPanelSummaryProps | object | no | Properties applied to the [ExpansionPanelSummary](https://material-ui.com/api/expansion-panel-summary) element. | 
 | expansionPanelDetailsProps | object | no | Properties applied to the [ExpansionPanelDetails](https://material-ui.com/api/expansion-panel-details) element. |
-| listItemProps | object | no | Properties applied to the [ListItem](https://material-ui.com/api/list-item) element. | 
+| listItemProps | object | no | Properties applied to the [ListItem](https://material-ui.com/api/list-item) element. |
 
 ## Development and Contributing
 
 * Fork and clone this repo.
 * Install the dependencies with yarn.
-* Start the development server with yarn start. Open a browser to http://localhost:5000.
+* Start the
+    - development server with yarn start. Open a browser to http://localhost:5000.
+    - styleguide with yarn start:styleguide. Open a browser to http://localhost:6060.
 
 Feel free to open an issue, submit a pull request, or contribute however you would like.
 Understand that this documentation is still a work in progress, so file an issue or submit a PR

@@ -22,7 +22,8 @@
   "scripts": {
     "changelog": "auto-changelog -p",
     "build": "neutrino build",
-    "start": "neutrino styleguide:start",
+    "start:styleguide": "neutrino styleguide:start",
+    "start": "neutrino start",
     "deploy": "neutrino styleguide:build && gh-pages --remote origin -d styleguide",
     "lint": "neutrino lint",
     "test": "neutrino test",
@@ -51,7 +52,8 @@
     "@material-ui/icons": "^1.1.0",
     "classnames": "^2.2.6",
     "fast-memoize": "^2.5.1",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "react-router-dom": "^4.3.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^1.0.0"

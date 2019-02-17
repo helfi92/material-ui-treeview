@@ -9,6 +9,7 @@ import {
   object,
 } from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,6 +24,14 @@ const pickClassName = prop('className');
 const tree = {
   // The node value.
   value: string.isRequired,
+  /**
+   * A string representation of the location to link to.
+   * Only use this property on a leaf node.
+   * This value will be fed directly to the
+   * [Link](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md)
+   * component of `react-router-dom`.
+   * */
+  href: string,
   // Optional node ID. Useful for when the node value is not unique.
   id: oneOfType([string, number]),
 };
@@ -122,6 +131,7 @@ class MuiTreeView extends Component {
     const value = this.getNodeValue(node);
     const id = this.getNodeId(node);
     const isLeaf = this.isLeaf(node);
+    const href = isLeaf ? this.getNodeHref(node) : null;
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
       : unit * depth + unit;
@@ -140,6 +150,12 @@ class MuiTreeView extends Component {
           value={value}
           onClick={() => this.handleLeafClick({ value, parent, id })}
           button
+          {...(href
+            ? {
+                component: Link,
+                to: href,
+              }
+            : null)}
           {...listItemProps}>
           <div className={classes.text}>{value}</div>
         </ListItem>
@@ -190,6 +206,12 @@ class MuiTreeView extends Component {
   getNodeId(node) {
     if (typeof node === 'object') {
       return node.id;
+    }
+  }
+
+  getNodeHref(node) {
+    if (typeof node === 'object') {
+      return node.href;
     }
   }
 
