@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import {
   arrayOf,
+  bool,
   shape,
   number,
   string,
@@ -85,6 +86,11 @@ class MuiTreeView extends Component {
     onLeafClick: func,
     /** A search term to refine the tree */
     searchTerm: string,
+    /**
+     * Given a `searchTerm`, a subtree will be shown if any parent node
+     * higher up in the tree matches the search term. Defaults to false.
+     * */
+    softSearch: bool,
     /** Properties applied to the ExpansionPanelSummary element. */
     expansionPanelSummaryProps: object,
     /** Properties applied to the ExpansionPanelDetails element. */
@@ -95,6 +101,7 @@ class MuiTreeView extends Component {
 
   static defaultProps = {
     searchTerm: null,
+    softSearch: false,
     onLeafClick: null,
     expansionPanelSummaryProps: null,
     expansionPanelDetailsProps: null,
@@ -104,8 +111,8 @@ class MuiTreeView extends Component {
   createFilteredTree = memoize(
     (tree, searchTerm) => (searchTerm ? this.filter(tree) : tree),
     {
-      serializer: ([tree, searchTerm]) =>
-        `${JSON.stringify(tree)}-${searchTerm}`,
+      serializer: ([tree, searchTerm, softSearch]) =>
+        `${JSON.stringify(tree)}-${searchTerm}-${softSearch}`,
     }
   );
 
@@ -115,13 +122,14 @@ class MuiTreeView extends Component {
     }
   };
 
-  renderNode = (node, parent, depth = 0) => {
+  renderNode = ({ node, parent, depth = 0, haltSearch }) => {
     const {
       theme: {
         spacing: { unit },
       },
       classes,
       searchTerm,
+      softSearch,
       onLeafClick: _,
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
@@ -135,8 +143,10 @@ class MuiTreeView extends Component {
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
       : unit * depth + unit;
+    const shouldHaltSearch =
+      softSearch && searchTerm ? value.includes(searchTerm) : false;
 
-    if (isLeaf && searchTerm && !value.includes(searchTerm)) {
+    if (!haltSearch && isLeaf && searchTerm && !value.includes(searchTerm)) {
       return null;
     }
 
@@ -189,7 +199,14 @@ class MuiTreeView extends Component {
           {...expansionPanelDetailsProps}
           classes={{ root: classes.panelDetails }}
           className={classNames(pickClassName(expansionPanelDetailsProps))}>
-          {node.nodes.map(l => this.renderNode(l, node, depth + 1))}
+          {node.nodes.map(l =>
+            this.renderNode({
+              node: l,
+              parent: node,
+              depth: depth + 1,
+              haltSearch: shouldHaltSearch,
+            })
+          )}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );
@@ -237,12 +254,12 @@ class MuiTreeView extends Component {
   }
 
   render() {
-    const tree = this.createFilteredTree(
-      this.props.tree,
-      this.props.searchTerm
-    );
+    const { tree, searchTerm, softSearch } = this.props;
+    const graph = this.createFilteredTree(tree, searchTerm, softSearch);
 
-    return tree.map(node => this.renderNode(node, null));
+    return graph.map(node =>
+      this.renderNode({ node, parent: null, haltSearch: false })
+    );
   }
 }
 
