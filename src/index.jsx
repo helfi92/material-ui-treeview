@@ -1,5 +1,6 @@
-import { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import MuiTreeView from './components/MuiTreeView';
 import './styles.css';
@@ -21,7 +22,7 @@ const tree = [
         nodes: [
           { value: 'Child D' },
           { value: 'Child E' },
-          { value: 'Child F' },
+          { value: 'Child F', href: '/f' },
         ],
       },
     ],
@@ -34,16 +35,18 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Typography variant="title" style={{ marginBottom: 16 }}>
-          MuiTreeView Demo
-        </Typography>
-        <MuiTreeView
-          defaultExpanded
-          onLeafClick={this.handleLeafClick}
-          tree={tree}
-        />
-      </Fragment>
+      <Router>
+        <Fragment>
+          <Typography variant="title" style={{ marginBottom: 16 }}>
+            MuiTreeView Demo
+          </Typography>
+          <MuiTreeView
+            defaultExpanded
+            onLeafClick={this.handleLeafClick}
+            tree={tree}
+          />
+        </Fragment>
+      </Router>
     );
   }
 }
