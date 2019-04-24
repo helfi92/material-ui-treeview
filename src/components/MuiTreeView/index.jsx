@@ -158,7 +158,7 @@ class MuiTreeView extends Component {
           key={typeof id !== 'undefined' ? id : value}
           id={value}
           value={value}
-          onClick={() => this.handleLeafClick({ value, parent, id })}
+          onClick={() => this.handleLeafClick({ ...node, value, parent, id })}
           button
           {...(href
             ? {
