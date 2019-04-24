@@ -70,7 +70,7 @@ render((
 | tree | object | yes | The data to render as a tree view |
 | onLeafClick | function | no | Callback function fired when a tree leaf is clicked. |
 | searchTerm | string | no | A search term to refine the tree. |
-| softSearch | boolean | no | * Given a `searchTerm`, a subtree will be shown if any parent node higher up in the tree matches the search term. Defaults to `false`. |
+| softSearch | boolean | no | Given a `searchTerm`, a subtree will be shown if any parent node higher up in the tree matches the search term. Defaults to `false`. |
 | expansionPanelSummaryProps | object | no | Properties applied to the [ExpansionPanelSummary](https://material-ui.com/api/expansion-panel-summary) element. | 
 | expansionPanelDetailsProps | object | no | Properties applied to the [ExpansionPanelDetails](https://material-ui.com/api/expansion-panel-details) element. |
 | listItemProps | object | no | Properties applied to the [ListItem](https://material-ui.com/api/list-item) element. |
