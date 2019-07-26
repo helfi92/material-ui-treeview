@@ -191,7 +191,7 @@ class MuiTreeView extends Component {
       <ExpansionPanel
         classes={expansionPanelClasses}
         style={{ textIndent }}
-        key={typeof node.id !== 'undefined' ? node.id : node.value}
+        key={node.id || node.value}
         elevation={0}
         {...props}
         className={classNames(classes.panel, pickClassName(props))}>
