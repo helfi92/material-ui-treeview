@@ -19,9 +19,12 @@ export interface MuiTreeViewProps {
   /**
    * Callback function fired when a tree leaf is clicked.
    */
-  onLeafClick?: (
-    leaf: { value: string; parent: Tree; id?: string | number; href?: string }
-  ) => void;
+  onLeafClick?: (leaf: {
+    value: string;
+    parent: Tree;
+    id?: string | number;
+    href?: string;
+  }) => void;
 
   /**
    * A search term to refine the tree

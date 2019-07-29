@@ -31,9 +31,9 @@ const tree = [
 
 class App extends Component {
   /* eslint-disable-next-line no-alert */
-  handleLeafClick = node => alert("Leaf click: " + JSON.stringify(node));
+  handleLeafClick = node => alert(`Leaf click: ${JSON.stringify(node)}`);
   /* eslint-disable-next-line no-alert */
-  handleParentClick = node => alert("Parent click: " + JSON.stringify(node));
+  handleParentClick = node => alert(`Parent click: ${JSON.stringify(node)}`);
 
   render() {
     return (
