@@ -27,6 +27,11 @@ export interface MuiTreeViewProps {
   }) => void;
 
   /**
+   * Callback function fired when a tree node is clicked.
+   */
+  onParentClick?: (parent: Tree) => void;
+
+  /**
    * A search term to refine the tree
    */
   searchTerm?: string;
