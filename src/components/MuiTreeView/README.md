@@ -24,7 +24,8 @@ const tree = [
 
 <MuiTreeView
   defaultExpanded
-  onLeafClick={node => alert(JSON.stringify(node))}
+  onLeafClick={node => alert("Leaf clicked: " + JSON.stringify(node))}
+  onParentClick={node => alert("Parent clicked: " + JSON.stringify(node))}
   tree={tree}
 />
 ```

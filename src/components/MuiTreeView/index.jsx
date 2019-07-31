@@ -84,6 +84,8 @@ class MuiTreeView extends Component {
     tree: arrayOf(shape(tree)).isRequired,
     /** Callback function fired when a tree leaf is clicked. */
     onLeafClick: func,
+    /** Callback function fired when a tree node is clicked. */
+    onParentClick: func,
     /** A search term to refine the tree */
     searchTerm: string,
     /**
@@ -103,6 +105,7 @@ class MuiTreeView extends Component {
     searchTerm: null,
     softSearch: false,
     onLeafClick: null,
+    onParentClick: null,
     expansionPanelSummaryProps: null,
     expansionPanelDetailsProps: null,
     listItemProps: null,
@@ -122,6 +125,12 @@ class MuiTreeView extends Component {
     }
   };
 
+  handleParentClick = parent => {
+    if (this.props.onParentClick) {
+      this.props.onParentClick(parent);
+    }
+  };
+
   renderNode = ({ node, parent, depth = 0, haltSearch }) => {
     const {
       theme: {
@@ -131,6 +140,7 @@ class MuiTreeView extends Component {
       searchTerm,
       softSearch,
       onLeafClick: _,
+      onParentClick: __,
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
@@ -181,7 +191,7 @@ class MuiTreeView extends Component {
       <ExpansionPanel
         classes={expansionPanelClasses}
         style={{ textIndent }}
-        key={typeof node.id !== 'undefined' ? node.id : node.value}
+        key={node.id || node.value}
         elevation={0}
         {...props}
         className={classNames(classes.panel, pickClassName(props))}>
@@ -192,7 +202,10 @@ class MuiTreeView extends Component {
           }}
           {...expansionPanelSummaryProps}
           className={classNames(pickClassName(expansionPanelSummaryProps))}
-          expandIcon={<KeyboardArrowDown />}>
+          expandIcon={<KeyboardArrowDown />}
+          onClick={() =>
+            this.handleParentClick({ ...node, value, parent, id })
+          }>
           <div className={classes.text}>{node.value}</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails

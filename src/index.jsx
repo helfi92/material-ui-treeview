@@ -31,7 +31,9 @@ const tree = [
 
 class App extends Component {
   /* eslint-disable-next-line no-alert */
-  handleLeafClick = node => alert(JSON.stringify(node));
+  handleLeafClick = node => alert(`Leaf click: ${JSON.stringify(node)}`);
+  /* eslint-disable-next-line no-alert */
+  handleParentClick = node => alert(`Parent click: ${JSON.stringify(node)}`);
 
   render() {
     return (
@@ -43,6 +45,7 @@ class App extends Component {
           <MuiTreeView
             defaultExpanded
             onLeafClick={this.handleLeafClick}
+            onParentClick={this.handleParentClick}
             tree={tree}
           />
         </Fragment>
