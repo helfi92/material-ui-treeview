@@ -1,6 +1,6 @@
 # Material-UI Tree View
 
-A React tree view for material-ui.
+A React tree view for material-ui with TypeScript support.
 
 See the demo at https://hassanali.me/material-ui-treeview.
 
