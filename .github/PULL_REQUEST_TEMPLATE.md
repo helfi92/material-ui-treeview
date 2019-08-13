@@ -7,5 +7,5 @@
     and is consitent with the documentation.
 -->
 - [ ] Make sure there are no linter errors (run `yarn lint` to see the errors and `yarn lint --fix` to fix them)
-- [ ] Update the types and documentation in `README.md`
-- [ ] Update the types and documentation in `src/index.d.ts`
+- [ ] Update the documentation file `README.md` if required
+- [ ] Update the Typescript declaration file `src/index.d.ts` if any exposed properties are removed/added
