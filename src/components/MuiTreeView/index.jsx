@@ -1,4 +1,5 @@
-import { Component } from 'react';
+  
+import React, { Component }  from 'react';
 import {
   arrayOf,
   bool,
@@ -25,6 +26,7 @@ const pickClassName = prop('className');
 const tree = {
   // The node value.
   value: string.isRequired,
+  text: string,
   /**
    * A string representation of the location to link to.
    * Only use this property on a leaf node.
@@ -147,6 +149,7 @@ class MuiTreeView extends Component {
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
+    const text = this.getNodeText(node);
     const id = this.getNodeId(node);
     const isLeaf = this.isLeaf(node);
     const href = isLeaf ? this.getNodeHref(node) : null;
@@ -177,7 +180,7 @@ class MuiTreeView extends Component {
               }
             : null)}
           {...listItemProps}>
-          <div className={classes.text}>{value}</div>
+          <div className={classes.text}>{text}</div>
         </ListItem>
       );
     }
@@ -206,7 +209,7 @@ class MuiTreeView extends Component {
           onClick={() =>
             this.handleParentClick({ ...node, value, parent, id })
           }>
-          <div className={classes.text}>{node.value}</div>
+          <div className={classes.text}>{node.text}</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
           {...expansionPanelDetailsProps}
@@ -232,6 +235,9 @@ class MuiTreeView extends Component {
   getNodeValue(node) {
     return typeof node === 'string' ? node : node.value;
   }
+  getNodeText(node) {
+    return typeof node === 'string' ? node : node.text;
+  }
 
   getNodeId(node) {
     if (typeof node === 'object') {
@@ -250,6 +256,7 @@ class MuiTreeView extends Component {
 
     return tree.filter(node => {
       const value = this.getNodeValue(node);
+      const text = this.getNodeText(node);
       const isLeaf = this.isLeaf(node);
 
       if (value.includes(searchTerm)) {
