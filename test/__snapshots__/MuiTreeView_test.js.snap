@@ -95,7 +95,6 @@ Array [
           <svg
             aria-hidden="true"
             className="MuiSvgIcon-root-53"
-            color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -291,7 +290,6 @@ Array [
           <svg
             aria-hidden="true"
             className="MuiSvgIcon-root-53"
-            color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -450,7 +448,6 @@ Array [
                     <svg
                       aria-hidden="true"
                       className="MuiSvgIcon-root-53"
-                      color={undefined}
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
