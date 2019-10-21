@@ -21,7 +21,7 @@
   "author": "Hassan Ali <helfi92@gmail.com>",
   "scripts": {
     "changelog": "auto-changelog -p",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && scripts/copy-files.sh",
     "start:styleguide": "neutrino styleguide:start",
     "start": "styleguidist server",
     "deploy": "styleguide:build && gh-pages --remote origin -d styleguide",

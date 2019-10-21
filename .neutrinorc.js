@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const { join } = require('path');
 const reactLint = require('@mozilla-frontend-infra/react-lint');
 const reactComponents = require('@neutrinojs/react-components');
@@ -48,14 +47,6 @@ module.exports = {
           StyleGuideRenderer: join(__dirname, 'src/styleguide/StyleGuideRenderer.jsx'),
         },
       }));
-    },
-    (neutrino) => {
-      if (process.env.NODE_ENV === 'production') {
-        fs.copyFileSync(`${neutrino.options.source}/index.d.ts`, join(__dirname, 'build/index.d.ts'));
-        ['package.json', 'LICENSE', 'README.md'].map(file => {
-          fs.copyFileSync(file, join(__dirname, `build/${file}`));
-        })
-      }
     },
     jest(),
   ],
