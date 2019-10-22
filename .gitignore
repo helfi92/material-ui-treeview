@@ -48,3 +48,7 @@ lib
 build
 /styleguide
 es5
+
+# eslint cache
+.eslintcache
+

@@ -28,9 +28,7 @@ const tree = [
 
 describe('MuiTreeView', () => {
   it('renders correctly', () => {
-    const jsonTree = renderer
-      .create(<MuiTreeView tree={tree} />)
-      .toJSON();
+    const jsonTree = renderer.create(<MuiTreeView tree={tree} />).toJSON();
 
     expect(jsonTree).toMatchSnapshot();
   });
