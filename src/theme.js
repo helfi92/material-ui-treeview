@@ -45,16 +45,11 @@ const theme = createMuiTheme({
     caption: Roboto400,
     button: Roboto500,
   },
-  spacing: {
-    unit: 8,
-    double: 16,
-    triple: 24,
-    quad: 32,
-  },
   overrides: {
     MuiPaper: {
       root: {
         backgroundColor: PRIMARY,
+        color: 'inherit',
       },
     },
   },

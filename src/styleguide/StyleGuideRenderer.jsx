@@ -1,14 +1,14 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment } from 'react';
 import StyleGuide from 'react-styleguidist/lib/rsg-components/StyleGuide/StyleGuideRenderer';
 import FontStager from '../components/FontStager';
 
-export default class StyleGuideRenderer extends Component {
-  render() {
-    return (
-      <Fragment>
-        <FontStager />
-        <StyleGuide {...this.props} />
-      </Fragment>
-    );
-  }
+function StyleGuideRenderer(props) {
+  return (
+    <Fragment>
+      <FontStager />
+      <StyleGuide {...props} />
+    </Fragment>
+  );
 }
+
+export default StyleGuideRenderer;

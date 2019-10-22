@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../theme';
 
-export default class ThemeWrapper extends Component {
-  render() {
-    return (
-      <MuiThemeProvider theme={theme}>{this.props.children}</MuiThemeProvider>
-    );
-  }
+function ThemeWrapper(props) {
+  return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 }
+
+export default ThemeWrapper;
