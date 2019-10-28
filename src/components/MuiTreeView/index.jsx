@@ -72,7 +72,9 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'noWrap',
     maxWidth: '75vw',
   },
-  expandIcon: {},
+  expandIcon: {
+    marginRight: 0,
+  },
 }));
 
 /**

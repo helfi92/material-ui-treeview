@@ -38,6 +38,8 @@
     "@neutrinojs/jest": "9.0.0-rc.4",
     "@neutrinojs/react-components": "9.0.0-rc.4",
     "auto-changelog": "^1.7.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-register": "^6.26.0",
     "eslint": "^5",
     "fs-extra": "^7.0.0",
