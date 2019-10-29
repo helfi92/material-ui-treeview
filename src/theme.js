@@ -46,6 +46,12 @@ const theme = createMuiTheme({
     button: Roboto500,
   },
   overrides: {
+    MuiListItem: {
+      root: {
+        paddingTop: '12px',
+        paddingBottom: '12px',
+      },
+    },
     MuiPaper: {
       root: {
         backgroundColor: PRIMARY,

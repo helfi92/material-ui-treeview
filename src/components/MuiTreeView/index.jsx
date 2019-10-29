@@ -72,6 +72,9 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'noWrap',
     maxWidth: '75vw',
   },
+  expandIcon: {
+    right: '8px',
+  },
 }));
 
 /**
@@ -202,6 +205,7 @@ function MuiTreeView(props) {
         className={classNames(classes.panel, pickClassName(rest))}>
         <ExpansionPanelSummary
           classes={{
+            expandIcon: classes.expandIcon,
             root: classes.panelSummary,
           }}
           IconButtonProps={{ edge: 'false' }}
