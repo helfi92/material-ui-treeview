@@ -204,10 +204,10 @@ function MuiTreeView(props) {
           classes={{
             root: classes.panelSummary,
           }}
+          IconButtonProps={{ edge: 'false' }}
           {...expansionPanelSummaryProps}
           className={classNames(pickClassName(expansionPanelSummaryProps))}
           expandIcon={<KeyboardArrowDown />}
-          IconButtonProps={{ edge: 'false' }}
           onClick={() => handleParentClick({ ...node, value, parent, id })}>
           <div className={classes.text}>{node.value}</div>
         </ExpansionPanelSummary>
