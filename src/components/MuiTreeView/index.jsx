@@ -13,9 +13,9 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
@@ -41,6 +41,17 @@ Object.assign(tree, {
   nodes: arrayOf(oneOfType([shape(tree), string])),
 });
 
+const ExpansionPanel = withStyles({
+  root: {
+    '&:before': {
+      opacity: 0,
+    },
+    '&$expanded': {
+      margin: 0,
+    },
+  },
+  expanded: {},
+})(MuiExpansionPanel);
 const useStyles = makeStyles(theme => ({
   panel: {
     width: '100%',
@@ -54,17 +65,6 @@ const useStyles = makeStyles(theme => ({
   panelDetails: {
     padding: 0,
     display: 'block',
-  },
-  panelExpanded: {
-    margin: 0,
-    '&:before': {
-      opacity: 0,
-    },
-  },
-  childPanel: {
-    '&:before': {
-      opacity: 0,
-    },
   },
   text: {
     overflow: 'hidden',
@@ -187,14 +187,8 @@ function MuiTreeView(props) {
       );
     }
 
-    const expansionPanelClasses = {
-      expanded: classes.panelExpanded,
-      ...(parent ? { root: classes.childPanel } : null),
-    };
-
     return (
       <ExpansionPanel
-        classes={expansionPanelClasses}
         style={{ textIndent }}
         key={node.id || node.value}
         elevation={0}
