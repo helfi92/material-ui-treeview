@@ -48,8 +48,8 @@ const theme = createMuiTheme({
   overrides: {
     MuiListItem: {
       root: {
-        paddingTop: '12px',
-        paddingBottom: '12px',
+        paddingTop: 12,
+        paddingBottom: 12,
       },
     },
     MuiPaper: {
