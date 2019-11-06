@@ -87,6 +87,9 @@ export default {
       baseBackground: BACKGROUND,
       sidebarBackground: theme.palette.primary.main,
       codeBackground: theme.palette.primary.main,
+      codeBase: '#80CBAE',
+      codeString: '#C3E88D',
+      codeProperty: '#FFCB6B',
     },
   },
 };
