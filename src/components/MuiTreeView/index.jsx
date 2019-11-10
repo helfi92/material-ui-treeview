@@ -99,6 +99,8 @@ class MuiTreeView extends Component {
     expansionPanelDetailsProps: object,
     /** Properties applied to the ListItem element. */
     listItemProps: object,
+    /** Makes search insensitive to case if true. Defaults to false. */
+    caseInsensitiveSearch: bool,
   };
 
   static defaultProps = {
@@ -109,6 +111,7 @@ class MuiTreeView extends Component {
     expansionPanelSummaryProps: null,
     expansionPanelDetailsProps: null,
     listItemProps: null,
+    caseInsensitiveSearch: false,
   };
 
   createFilteredTree = memoize(
@@ -144,6 +147,7 @@ class MuiTreeView extends Component {
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
+      caseInsensitiveSearch,
       ...props
     } = this.props;
     const value = this.getNodeValue(node);
@@ -246,13 +250,17 @@ class MuiTreeView extends Component {
   }
 
   filter(tree) {
+    const { caseInsensitiveSearch } = this.props;
     const { searchTerm } = this.props;
+    const searchRegExp = caseInsensitiveSearch
+      ? RegExp(searchTerm, 'i')
+      : RegExp(searchTerm);
 
     return tree.filter(node => {
       const value = this.getNodeValue(node);
       const isLeaf = this.isLeaf(node);
 
-      if (value.includes(searchTerm)) {
+      if (searchRegExp.test(value)) {
         return true;
       }
 
@@ -267,8 +275,13 @@ class MuiTreeView extends Component {
   }
 
   render() {
-    const { tree, searchTerm, softSearch } = this.props;
-    const graph = this.createFilteredTree(tree, searchTerm, softSearch);
+    const { tree, searchTerm, softSearch, caseInsensitiveSearch } = this.props;
+    const graph = this.createFilteredTree(
+      tree,
+      searchTerm,
+      softSearch,
+      caseInsensitiveSearch
+    );
 
     return graph.map(node =>
       this.renderNode({ node, parent: null, haltSearch: false })
