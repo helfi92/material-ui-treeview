@@ -15,6 +15,8 @@ import { prop } from 'ramda';
 import memoize from 'fast-memoize';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -60,6 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   panelSummary: {
     padding: 0,
+    paddingRight: theme.spacing(1),
     marginLeft: theme.spacing(1),
   },
   panelDetails: {
@@ -71,6 +74,9 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'noWrap',
     maxWidth: '75vw',
+  },
+  listItemTextDense: {
+    margin: 0,
   },
 }));
 
@@ -182,7 +188,10 @@ function MuiTreeView(props) {
               }
             : null)}
           {...listItemProps}>
-          <div className={classes.text}>{value}</div>
+          <ListItemText
+            className={classNames(classes.text, classes.listItemTextDense)}
+            primary={value}
+          />
         </ListItem>
       );
     }
@@ -201,7 +210,7 @@ function MuiTreeView(props) {
           className={classNames(pickClassName(expansionPanelSummaryProps))}
           expandIcon={<KeyboardArrowDown />}
           onClick={() => handleParentClick({ ...node, value, parent, id })}>
-          <div className={classes.text}>{node.value}</div>
+          <Typography className={classes.text}>{node.value}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
           {...expansionPanelDetailsProps}
