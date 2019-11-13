@@ -29,6 +29,9 @@ module.exports = {
     }),
     reactComponents(),
     (neutrino) => {
+      neutrino.config.resolve.alias
+        .set('react-dom', '@hot-loader/react-dom');
+
       neutrino.register('styleguide', () => ({
         webpackConfig: neutrino.config.toConfig(),
         components: join(
@@ -36,6 +39,7 @@ module.exports = {
           'components/**',
           `*.{${neutrino.options.extensions.join(',')}}`
         ),
+        usageMode: 'expand',
         showSidebar: false,
         skipComponentsWithoutExample: true,
         theme: theme.styleguide,

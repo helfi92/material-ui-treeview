@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <Typography variant="title" style={{ marginBottom: 16 }}>
+          <Typography variant="h6" style={{ marginBottom: 16 }}>
             MuiTreeView Demo
           </Typography>
           <MuiTreeView

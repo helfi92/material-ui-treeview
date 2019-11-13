@@ -45,16 +45,17 @@ const theme = createMuiTheme({
     caption: Roboto400,
     button: Roboto500,
   },
-  spacing: {
-    unit: 8,
-    double: 16,
-    triple: 24,
-    quad: 32,
-  },
   overrides: {
+    MuiListItem: {
+      root: {
+        paddingTop: 12,
+        paddingBottom: 12,
+      },
+    },
     MuiPaper: {
       root: {
         backgroundColor: PRIMARY,
+        color: 'inherit',
       },
     },
   },
@@ -86,6 +87,9 @@ export default {
       baseBackground: BACKGROUND,
       sidebarBackground: theme.palette.primary.main,
       codeBackground: theme.palette.primary.main,
+      codeBase: '#80CBAE',
+      codeString: '#C3E88D',
+      codeProperty: '#FFCB6B',
     },
   },
 };
