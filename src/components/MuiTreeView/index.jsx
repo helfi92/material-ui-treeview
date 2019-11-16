@@ -87,7 +87,7 @@ function MuiTreeView(props) {
   const theme = useTheme();
   const classes = useStyles();
   const unit = theme.spacing(1);
-  const { tree, searchTerm, softSearch } = props;
+  const { tree, searchTerm, softSearch, caseInsensitiveSearch } = props;
   const handleLeafClick = leaf => {
     if (props.onLeafClick) {
       props.onLeafClick(leaf);
@@ -124,8 +124,11 @@ function MuiTreeView(props) {
     return tree.filter(node => {
       const value = getNodeValue(node);
       const isLeaf = isLeafNode(node);
+      const searchRegExp = caseInsensitiveSearch
+        ? RegExp(searchTerm, 'i')
+        : RegExp(searchTerm);
 
-      if (value.includes(searchTerm)) {
+      if (searchRegExp.test(value)) {
         return true;
       }
 
@@ -155,6 +158,7 @@ function MuiTreeView(props) {
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
+      caseInsensitiveSearch,
       ...rest
     } = props;
     const value = getNodeValue(node);
@@ -164,10 +168,13 @@ function MuiTreeView(props) {
     const textIndent = isLeaf
       ? depth * unit + unit + (parent ? unit : 0)
       : unit * depth + unit;
+    const searchRegExp = caseInsensitiveSearch
+      ? RegExp(searchTerm, 'i')
+      : RegExp(searchTerm);
     const shouldHaltSearch =
-      softSearch && searchTerm ? value.includes(searchTerm) : false;
+      softSearch && searchTerm ? searchRegExp.test(value) : false;
 
-    if (!haltSearch && isLeaf && searchTerm && !value.includes(searchTerm)) {
+    if (!haltSearch && isLeaf && searchTerm && !searchRegExp.test(value)) {
       return null;
     }
 
@@ -256,6 +263,8 @@ MuiTreeView.propTypes = {
   expansionPanelDetailsProps: object,
   /** Properties applied to the ListItem element. */
   listItemProps: object,
+  /** Makes search insensitive to case if true. Defaults to false. */
+  caseInsensitiveSearch: bool,
 };
 
 MuiTreeView.defaultProps = {
@@ -266,6 +275,7 @@ MuiTreeView.defaultProps = {
   expansionPanelSummaryProps: null,
   expansionPanelDetailsProps: null,
   listItemProps: null,
+  caseInsensitiveSearch: false,
 };
 
 export default MuiTreeView;

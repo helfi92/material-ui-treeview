@@ -56,6 +56,12 @@ export interface MuiTreeViewProps {
    * Properties applied to the ListItem element.
    */
   listItemProps?: ListItemProps;
+
+  /**
+   * Makes search insensitive to case if true.
+   * Defaults to false.
+   */
+  caseInsensitiveSearch?: boolean;
 }
 
 export default class MuiTreeView extends React.Component<MuiTreeViewProps> {}
