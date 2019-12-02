@@ -75,7 +75,7 @@ render((
 | expansionPanelSummaryProps | object | no | Properties applied to the [ExpansionPanelSummary](https://material-ui.com/api/expansion-panel-summary) element. | 
 | expansionPanelDetailsProps | object | no | Properties applied to the [ExpansionPanelDetails](https://material-ui.com/api/expansion-panel-details) element. |
 | listItemProps | object | no | Properties applied to the [ListItem](https://material-ui.com/api/list-item) element. |
-| caseInsensitiveSearch | boolean | no | Makes search insensitive to case if true. Defaults to false. |
+| caseSensitiveSearch | boolean | no | If true, search is case sensitive. Defaults to false. |
 
 ## Development and Contributing
 
