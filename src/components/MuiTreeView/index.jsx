@@ -22,7 +22,6 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import { jsxAttribute } from '@babel/types';
 
 const pickClassName = prop('className');
 /** Prop-type for a recursive data structure */
@@ -89,7 +88,13 @@ function MuiTreeView(props) {
   const theme = useTheme();
   const classes = useStyles();
   const unit = theme.spacing(1);
-  const { tree, searchTerm, softSearch, caseSensitiveSearch, onEmptySearch } = props;
+  const {
+    tree,
+    searchTerm,
+    softSearch,
+    caseSensitiveSearch,
+    onEmptySearch,
+  } = props;
   const handleLeafClick = leaf => {
     if (props.onLeafClick) {
       props.onLeafClick(leaf);
@@ -239,9 +244,9 @@ function MuiTreeView(props) {
   };
 
   const graph = createFilteredTree(tree, searchTerm, softSearch);
-  if(graph.length===0){
-    if(onEmptySearch!==null)
-    return (onEmptySearch);
+
+  if (graph.length === 0) {
+    if (onEmptySearch !== null) return onEmptySearch;
   }
 
   return graph.map(node =>
@@ -271,8 +276,10 @@ MuiTreeView.propTypes = {
   listItemProps: object,
   /** If true, search is case sensitive. Defaults to false. */
   caseSensitiveSearch: bool,
-  /** Property applied to render data when search result is empty. Defaults to null */
-  onEmptySearch: any
+  /** Property applied to render data when search result is empty.
+   * Defaults to null
+   * */
+  onEmptySearch: any,
 };
 
 MuiTreeView.defaultProps = {
@@ -284,7 +291,7 @@ MuiTreeView.defaultProps = {
   expansionPanelDetailsProps: null,
   listItemProps: null,
   caseSensitiveSearch: false,
-  onEmptySearch: null
+  onEmptySearch: null,
 };
 
 export default MuiTreeView;
