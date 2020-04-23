@@ -162,6 +162,7 @@ function MuiTreeView(props) {
       softSearch,
       onLeafClick: _,
       onParentClick: __,
+      onEmptySearch: ___,
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
