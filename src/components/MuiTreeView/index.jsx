@@ -8,7 +8,7 @@ import {
   func,
   oneOfType,
   object,
-  any,
+  node,
 } from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -245,8 +245,8 @@ function MuiTreeView(props) {
 
   const graph = createFilteredTree(tree, searchTerm, softSearch);
 
-  if (graph.length === 0) {
-    if (onEmptySearch !== null) return onEmptySearch;
+  if (!graph.length && onEmptySearch) {
+    return onEmptySearch;
   }
 
   return graph.map(node =>
@@ -276,10 +276,9 @@ MuiTreeView.propTypes = {
   listItemProps: object,
   /** If true, search is case sensitive. Defaults to false. */
   caseSensitiveSearch: bool,
-  /** Property applied to render data when search result is empty.
-   * Defaults to null
-   * */
-  onEmptySearch: any,
+  /** Node to render when searchTerm is provided but the search filter
+   *  returns no result. */
+  onEmptySearch: node,
 };
 
 MuiTreeView.defaultProps = {
