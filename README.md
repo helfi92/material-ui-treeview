@@ -77,6 +77,7 @@ render((
 | expansionPanelDetailsProps | object | no | Properties applied to the [ExpansionPanelDetails](https://material-ui.com/api/expansion-panel-details) element. |
 | listItemProps | object | no | Properties applied to the [ListItem](https://material-ui.com/api/list-item) element. |
 | caseSensitiveSearch | boolean | no | If true, search is case sensitive. Defaults to false. |
+| Link | node | no | A React Router Link node to use. _Required_ when a leaf node has an href value. |
 
 ## Development and Contributing
 

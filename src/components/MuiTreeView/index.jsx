@@ -11,7 +11,6 @@ import {
   node,
 } from 'prop-types';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import { prop } from 'ramda';
 import memoize from 'fast-memoize';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
@@ -163,6 +162,7 @@ function MuiTreeView(props) {
       onLeafClick: _,
       onParentClick: __,
       onEmptySearch: ___,
+      Link,
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
@@ -184,6 +184,12 @@ function MuiTreeView(props) {
 
     if (!haltSearch && isLeaf && searchTerm && !searchRegExp.test(value)) {
       return null;
+    }
+
+    if (!Link && isLeaf && href) {
+      throw new Error(
+        'A Link prop is required when a leaf node has an href specified.'
+      );
     }
 
     if (isLeaf) {
@@ -280,6 +286,11 @@ MuiTreeView.propTypes = {
   /** Node to render when searchTerm is provided but the search filter
    *  returns no result. */
   onEmptySearch: node,
+  /**
+   * A React Router Link node to use. Required when a leaf node
+   * has an href value.
+   * */
+  Link: node,
 };
 
 MuiTreeView.defaultProps = {
@@ -292,6 +303,7 @@ MuiTreeView.defaultProps = {
   listItemProps: null,
   caseSensitiveSearch: false,
   onEmptySearch: null,
+  Link: null,
 };
 
 export default MuiTreeView;

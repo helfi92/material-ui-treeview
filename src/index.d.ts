@@ -66,6 +66,12 @@ export interface MuiTreeViewProps {
   /** Node to render when searchTerm is provided but the search filter 
    * returns no result.*/
   onEmptySearch?: React.ReactNode;
+
+  /**
+   * A React Router Link node to use. Required when a leaf node
+   * has an href value.
+   * */
+  Link?: React.ReactNode;
 }
 
 export default class MuiTreeView extends React.Component<MuiTreeViewProps> {}
