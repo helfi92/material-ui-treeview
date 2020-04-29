@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import MuiTreeView from './components/MuiTreeView';
 import './styles.css';
@@ -55,6 +55,7 @@ class App extends Component {
           </Typography>
           <input onChange={this.handleInputChange} value={search} />
           <MuiTreeView
+            Link={Link}
             searchTerm={search}
             onEmptySearch={<p>Yikes...</p>}
             defaultExpanded
