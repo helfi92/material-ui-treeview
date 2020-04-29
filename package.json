@@ -1,6 +1,6 @@
 {
   "name": "material-ui-treeview",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "main": "MuiTreeView.js",
   "types": "index.d.ts",
   "description": "A React tree view for material-ui v1.",
