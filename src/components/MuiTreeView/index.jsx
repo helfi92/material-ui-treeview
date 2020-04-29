@@ -8,6 +8,7 @@ import {
   func,
   oneOfType,
   object,
+  node,
 } from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -87,7 +88,13 @@ function MuiTreeView(props) {
   const theme = useTheme();
   const classes = useStyles();
   const unit = theme.spacing(1);
-  const { tree, searchTerm, softSearch, caseSensitiveSearch } = props;
+  const {
+    tree,
+    searchTerm,
+    softSearch,
+    caseSensitiveSearch,
+    onEmptySearch,
+  } = props;
   const handleLeafClick = leaf => {
     if (props.onLeafClick) {
       props.onLeafClick(leaf);
@@ -155,6 +162,7 @@ function MuiTreeView(props) {
       softSearch,
       onLeafClick: _,
       onParentClick: __,
+      onEmptySearch: ___,
       expansionPanelSummaryProps,
       expansionPanelDetailsProps,
       listItemProps,
@@ -238,6 +246,10 @@ function MuiTreeView(props) {
 
   const graph = createFilteredTree(tree, searchTerm, softSearch);
 
+  if (!graph.length && onEmptySearch) {
+    return onEmptySearch;
+  }
+
   return graph.map(node =>
     renderNode({ node, parent: null, haltSearch: false })
   );
@@ -265,6 +277,9 @@ MuiTreeView.propTypes = {
   listItemProps: object,
   /** If true, search is case sensitive. Defaults to false. */
   caseSensitiveSearch: bool,
+  /** Node to render when searchTerm is provided but the search filter
+   *  returns no result. */
+  onEmptySearch: node,
 };
 
 MuiTreeView.defaultProps = {
@@ -276,6 +291,7 @@ MuiTreeView.defaultProps = {
   expansionPanelDetailsProps: null,
   listItemProps: null,
   caseSensitiveSearch: false,
+  onEmptySearch: null,
 };
 
 export default MuiTreeView;

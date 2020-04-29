@@ -36,14 +36,27 @@ class App extends Component {
   /* eslint-disable-next-line no-alert */
   handleParentClick = node => alert(`Parent click: ${JSON.stringify(node)}`);
 
+  state = {
+    search: '',
+  };
+
+  handleInputChange = ({ currentTarget: { value } }) => {
+    this.setState({ search: value });
+  };
+
   render() {
+    const { search } = this.state;
+
     return (
       <Router>
         <Fragment>
           <Typography variant="h6" style={{ marginBottom: 16 }}>
             MuiTreeView Demo
           </Typography>
+          <input onChange={this.handleInputChange} value={search} />
           <MuiTreeView
+            searchTerm={search}
+            onEmptySearch={<p>Yikes...</p>}
             defaultExpanded
             onLeafClick={this.handleLeafClick}
             onParentClick={this.handleParentClick}

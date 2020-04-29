@@ -62,6 +62,10 @@ export interface MuiTreeViewProps {
    * Defaults to false.
    */
   caseInsensitiveSearch?: boolean;
+
+  /** Node to render when searchTerm is provided but the search filter 
+   * returns no result.*/
+  onEmptySearch?: React.ReactNode;
 }
 
 export default class MuiTreeView extends React.Component<MuiTreeViewProps> {}
